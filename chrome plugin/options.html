@@ -1,0 +1,100 @@
+<html>
+<head><title>Options for Hacker News Filter</title></head>
+<script type="text/javascript">
+
+/* Each filterValue set has:
+
+   (1) Title
+   (2) description
+   (3) values - Json String of filters
+   (4) pages - Number of Pages to display
+
+  There is also an active_filter toggle.
+
+*/
+
+// Saves options to localStorage.
+function save_options() {
+
+  var activeFilter = document.getElementById("activeFilter");
+  localStorage["activeFilter"] = activeFilter.value;
+
+  var filterValues = document.getElementById("filterValues");
+  localStorage["filterValues"] = filterValues.value;
+
+  // Update status to let user know options were saved.
+  var status = document.getElementById("status");
+  status.innerHTML = "Options Saved.";
+  setTimeout(function() {
+    status.innerHTML = "";
+  }, 750);
+
+}
+
+// Restores select box state to saved value from localStorage.
+function restore_options() {
+	
+  var data = localStorage["filterValues"];
+  if (!data) {
+	var ob= {
+	    "standard": {
+	        "description": "everything except bitcoin",
+	        "pages": "1",
+	        "data": {
+	            "default": 1,
+	            "bitcoin": 250
+	        }
+	    },
+	    "weekly roundup": {
+	        "description": "make sure I did not miss anything important this week",
+	        "pages": "15",
+	        "data": {
+	            "default": 250,
+	            "heroku": 5,
+	            "python": 10,
+	            "rails": 40,
+	            "jquery": 20,
+	            "clojure": 10
+	        }
+	    },
+	    "find all": {
+	        "description": "find everything in the last month including certain keyword",
+	        "pages": "100",
+	        "data": {
+	            "default": 1000,
+	            "github": 1
+	        }
+	    }
+	};
+	data = JSON.stringify(ob);
+  }
+				
+  var parsedData = JSON.parse(data);
+  var formattedData = JSON.stringify(parsedData, null, '\t');
+
+  var textarea = document.getElementById("filterValues");
+  textarea.value = formattedData;
+
+  var activeFilter = document.getElementById("activeFilter");
+  activeFilter.value = localStorage["activeFilter"];
+  
+}
+
+</script>
+
+<body onload="restore_options()">
+
+<p>Json for filters:</p>
+
+<textarea id="filterValues" rows="35" cols="90"></textarea>
+
+<p>Title of active filter:</p>
+
+<input type="text" id="activeFilter" size="30" />
+
+
+<div id="status">&nbsp;</div>
+<br>
+<button onclick="save_options()">Save</button>
+</body>
+</html>

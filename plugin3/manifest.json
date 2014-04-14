@@ -1,0 +1,25 @@
+{
+  "name": "HN Filter - 2",
+  "version": "0",
+  "description": "Filter HN posts",
+  "background": {"page": "background.html"},
+  "manifest_version": 2,
+  "browser_action": {
+    "name": "Manipulate DOM",
+    "icons": ["icon.png"],
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [ {
+    "js": [
+      "jquery.min.js",
+      "underscore-min.js",
+      "localStorage.js",
+      "Porter_stemmer.js",
+      "bayesian.js",
+      "background.js"
+    ],
+    "css":["content.css"],
+    "matches": [ "http://www.hckrnews.com/" ]
+  }]
+}

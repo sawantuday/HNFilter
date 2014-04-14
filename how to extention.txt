@@ -1,0 +1,9 @@
+1. http://www.drdobbs.com/article/print?articleId=232602420&siteSectionName=mobile
+2. http://www.sitepoint.com/build-your-own-chrome-extension-a-google-documents-word-count-tool/
+3. http://carl-topham.com/theblog/post/creating-chrome-extension-uses-jquery-manipulate-dom-page/
+
+
+new library
+https://github.com/harthur/brain
+
+https://github.com/NaturalNode/natural
