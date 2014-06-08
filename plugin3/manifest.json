@@ -20,6 +20,6 @@
       "background.js"
     ],
     "css":["content.css"],
-    "matches": [ "http://www.hckrnews.com/" ]
+    "matches": [ "http://*/*", "https://*/*", "file:///*/*" ]
   }]
 }
