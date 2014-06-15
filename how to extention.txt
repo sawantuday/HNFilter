@@ -7,3 +7,5 @@ new library
 https://github.com/harthur/brain
 
 https://github.com/NaturalNode/natural
+
+http://pyvideo.org/video/2612/enough-machine-learning-to-make-hacker-news-reada

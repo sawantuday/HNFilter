@@ -12,7 +12,14 @@ var bayes = new Bayesian({thresholds: {notliked: 3,liked: 1}});
 var sampleData = {};
 var DATA_KEY = 'HN_JSON_Data';
 var json = localStorage.getItem(DATA_KEY);
-bayes.fromJSON(JSON.parse(json));
+console.log(json);
+if(json){
+	try{
+		bayes.fromJSON(JSON.parse(json));
+	}catch(e){
+		console.log('Error while loading saved state');
+	}
+}
 
 //handler for msg from popup page
 chrome.runtime.onMessage.addListener(
@@ -36,9 +43,9 @@ function setMode(mode){
 	localStorage.setItem(modeKey, mode);
 	if(mode == 'training'){
 		removeClassifier();
-		//renderTraining();	//training mode will be always shown
+		renderTraining();	//training mode will be always shown
 	}else if(mode == 'classifier'){
-		// removeButtons();
+		removeButtons();
 		renderClassifier();
 	}
 };
@@ -87,11 +94,12 @@ function renderTraining(){
 
 	//add upvote downvote buttons
 	entries.find('a:last').append(span);
+
 	//handler for buttons
 	$('div#entries').on('click', '.HNfilter a', function(e){
 		e.preventDefault();
 		var text = getText($(this).parents('a.span15'));
-		var category = 'liked';		//just on a safer side
+		var category = 'liked';		//default vlaue
 		if($(this).hasClass('HNvoteUp')){
 			category = 'liked';
 		}else if($(this).hasClass('HNvoteDown')){
