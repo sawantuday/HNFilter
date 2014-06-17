@@ -1,4 +1,4 @@
-console.log('background js started');
+// console.log('background js started');
 
 var modeKey = 'HNFilterMode';
 var container = $('div#entries');
@@ -8,7 +8,7 @@ var commonWords = ['a','able','about','above','abroad','according','accordingly'
 var regEx = new RegExp("\\b(?:"+commonWords.join("|")+")\\b", "ig");
 
 //initialize bayesian classifier
-var bayes = new Bayesian({thresholds: {notliked: 1,liked: 2}});
+var bayes = new Bayesian({thresholds: {notliked: 3,liked: 1}});
 var sampleData = {};
 var DATA_KEY = 'HN_JSON_Data';
 var json = localStorage.getItem(DATA_KEY);
